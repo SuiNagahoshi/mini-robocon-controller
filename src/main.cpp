@@ -72,6 +72,7 @@ void setup() {
   ledcAttachPin(LOWOPEN,3);
 
   ledcAttachPin(SHOOTMOTOR,4);
+
   ledcAttachPin(UPDWNMOTOR,5);
 }
 
@@ -135,21 +136,26 @@ void upDown(bool dir) {
 void lowToolDeploy(bool dir) {
   if (dir) {
     digitalWrite(LOWMTDIR, HIGH);
-    ledcWrite(3, 127);
+    ledcWrite(2, 127);
   } else {
     digitalWrite(LOWMTDIR, LOW);
-    ledcWrite(3, 127);
+    ledcWrite(2, 127);
   }
 }
 
 void lowToolOpen(bool dir) {
   if (dir) {
     digitalWrite(LOWOPDIR, HIGH);
-    ledcWrite(2, 127);
+    ledcWrite(3, 127);
   } else {
     digitalWrite(LOWOPDIR, LOW);
-    ledcWrite(2, 127);
+    ledcWrite(3, 127);
   }
+}
+
+void highToolShoot() {
+  digitalWrite(SHOOTDIR, LOW);
+  ledcWrite(4, 200);
 }
 
 std::vector<int> motor;
