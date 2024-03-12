@@ -164,39 +164,41 @@ void loop() {
   if (PS4.isConnected()) {
     if (PS4.RStickY() >= 10 || PS4.RStickY() <= -10) { 
       forward(PS4.RStickY());
-      //Serial.printf("Left Stick y at  %d\n", PS4.LStickY());
     } else {
       motor = {RMOTOR, LMOTOR};
       stopMotor(motor);
     };
-    if (PS4.Right()) { 
-      forward(PS4.RStickY());
-      //Serial.printf("Left Stick y at  %d\n", PS4.LStickY());
-    } else {
-      motor = {RMOTOR, LMOTOR};
-      stopMotor(motor);
-    };
-    if (PS4.Up()) { 
-      forward(PS4.RStickY());
-      //Serial.printf("Left Stick y at  %d\n", PS4.LStickY());
-    } else {
-      motor = {RMOTOR, LMOTOR};
-      stopMotor(motor);
-    };
-    if (PS4.Down()) { 
-      forward(PS4.RStickY());
-      //Serial.printf("Left Stick y at  %d\n", PS4.LStickY());
+    if (PS4.RStickX() >= 10 || PS4.RStickX() <= -10) { 
+      rotation(PS4.RStickX());
     } else {
       motor = {RMOTOR, LMOTOR};
       stopMotor(motor);
     };
     if (PS4.Left()) { 
-      forward(PS4.RStickY());
-      //Serial.printf("Left Stick y at  %d\n", PS4.LStickY());
+      lowToolDeploy(false);
     } else {
-      motor = {RMOTOR, LMOTOR};
+      motor = {LOWMOTOR};
       stopMotor(motor);
     };
+    if (PS4.Right()) { 
+      lowToolDeploy(true);
+    } else {
+      motor = {LOWMOTOR};
+      stopMotor(motor);
+    };
+    if (PS4.Up()) { 
+      upDown(false);
+    } else {
+      motor = {UPDWNMOTOR};
+      stopMotor(motor);
+    };
+    if (PS4.Down()) { 
+      upDown(true);
+    } else {
+      motor = {UPDWNMOTOR};
+      stopMotor(motor);
+    };
+    
     
   }
 
